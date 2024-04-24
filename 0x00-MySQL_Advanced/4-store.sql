@@ -4,6 +4,8 @@
 CREATE TRIGGER update_quantity
 AFTER INSERT ON orders
 FOR EACH ROW
-UPDATE items
-SET quantity = quantity - orders.number
-WHERE items.name = orders.item_name;
+BEGIN
+  UPDATE items
+  SET quantity = quantity - orders.number
+  WHERE items.name = NEW.item_name
+END;
