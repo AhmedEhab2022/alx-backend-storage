@@ -2,6 +2,5 @@
 
 SELECT band_name, (split - formed) As lifespan
 FROM bands
-WHERE style = 'Glam rock' AND split <= '2022'
-GROUP BY band_name
+WHERE style = 'Glam rock' AND split <= 2022
 ORDER BY lifespan DESC;
