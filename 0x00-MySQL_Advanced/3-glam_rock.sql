@@ -3,4 +3,5 @@
 SELECT band_name, (2022 - formed) As lifespan
 FROM bands
 WHERE style = 'Glam rock'
+GROUP BY band_name
 ORDER BY lifespan DESC;
