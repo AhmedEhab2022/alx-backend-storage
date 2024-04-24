@@ -6,4 +6,4 @@ AFTER INSERT ON orders
 FOR EACH ROW
 UPDATE items
 SET quantity = quantity -  NEW.number
-WHERE item_id = NEW.item_id;
+WHERE name = item_name
