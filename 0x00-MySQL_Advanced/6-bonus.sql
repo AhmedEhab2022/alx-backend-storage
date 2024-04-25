@@ -11,16 +11,17 @@ BEGIN
   -- DECLARE project_id
   DECLARE project_id INT;
 
-  -- Add the project if it does not exist
-  IF project_id IS NULL THEN
-    INSERT INTO projects(name)
-    VALUES (project_name);
-  END IF;
-
-  -- STORE project_id
+  -- Get the project id
   SELECT id INTO project_id
   FROM projects
   WHERE name = project_name;
+
+  -- If the project does not exist, create it
+  IF project_id IS NULL THEN
+    INSERT INTO projects(name)
+    VALUES (project_name);
+    SET project_id = LAST_INSERT_ID();
+  END IF;
 
   -- Add the correction
   INSERT INTO corrections(user_id, project_id, score)
