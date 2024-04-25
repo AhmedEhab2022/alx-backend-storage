@@ -2,5 +2,5 @@
 -- and the first letter of name and the score.
 
 -- Create index
-CREATE INDEX idx_name_first
+CREATE INDEX idx_name_first_score
 ON names(name(1), score);
