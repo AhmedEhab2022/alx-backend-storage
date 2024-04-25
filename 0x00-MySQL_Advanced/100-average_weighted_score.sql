@@ -12,7 +12,8 @@ BEGIN
   UPDATE users
   SET average_score = (SELECT (SUM(weight * score) / Sum(weight))
                       FROM corrections, projects
-                      WHERE corrections.user_id = user_id)
+                      WHERE corrections.user_id = user_id
+                      AND projects.id = project_id)
   WHERE id = user_id;
 
 END$$
