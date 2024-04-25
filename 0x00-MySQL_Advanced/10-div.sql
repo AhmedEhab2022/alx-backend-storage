@@ -6,8 +6,8 @@ DELIMITER $$
 
 -- Create function
 CREATE FUNCTION SafeDiv(x INT, y INT)
--- Declare that the function returns integer and deterministic
-RETURNS INT DETERMINISTIC
+-- Declare that the function returns float and deterministic
+RETURNS FLOAT DETERMINISTIC
 BEGIN
   IF y = 0 THEN
     RETURN 0;
