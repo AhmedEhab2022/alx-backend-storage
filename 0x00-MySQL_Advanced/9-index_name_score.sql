@@ -3,4 +3,4 @@
 
 -- Create index
 CREATE INDEX idx_name_first
-ON names(SUBSTRING(name, 1, 1), score);
+ON names(name(1), score);
