@@ -3,5 +3,5 @@
 -- Select band_name and lifespan from bands
 SELECT band_name, (IFNULL(split, 2022) - formed) AS lifespan
 FROM bands
-WHERE style = 'Glam rock'
+WHERE style = '%Glam rock%'
 ORDER BY lifespan DESC;
