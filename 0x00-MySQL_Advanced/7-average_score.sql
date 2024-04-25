@@ -12,7 +12,7 @@ BEGIN
   -- Update the average score
   UPDATE users
   SET average_score = (SELECT AVG(score)
-                      FROM projects
+                      FROM corrections
                       WHERE projects.user_id = user_id)
   WHERE id = user_id;
 
