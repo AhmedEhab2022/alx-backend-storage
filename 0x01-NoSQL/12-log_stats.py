@@ -12,7 +12,7 @@ def log_stats():
     """
     client = MongoClient('mongodb://127.0.0.1:27017')
     nginx_collection = client.logs.Nginx
-    print("{:d} logs".format(nginx_collection.count_documents()))
+    print("{:d} logs".format(nginx_collection.count_documents({})))
     print("Methods:")
     for method in ["GET", "POST", "PUT", "PATCH", "DELETE"]:
         doc_count = nginx_collection.count_documents({"method": method})
