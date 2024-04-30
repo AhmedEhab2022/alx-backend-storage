@@ -11,13 +11,13 @@ def log_stats():
     Nginx logs stored in MongoDB
     """
     client = MongoClient('mongodb://127.0.0.1:27017')
-    nginx_collection = client.logs.Nginx
+    nginx_collection = client.logs.nginx
     print("{:d} logs".format(nginx_collection.count_documents({})))
     print("Methods:")
     methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
     for method in methods:
         doc_count = nginx_collection.count_documents({"method": method})
-        print("    method {}: {:d}".format(method, doc_count))
+        print("\tmethod {}: {:d}".format(method, doc_count))
 
     print("{:d} status check".format(nginx_collection.count_documents({
         "method": "GET",
