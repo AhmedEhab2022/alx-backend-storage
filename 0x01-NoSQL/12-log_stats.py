@@ -18,10 +18,10 @@ def log_stats():
         doc_count = nginx_collection.count_documents({"method": method})
         print("\tmethod {}: {:d}".format(method, doc_count))
 
-    print("{:d} status check".format(nginx_collection.count_documents([
-        {"method": "GET"},
-        {"path": "/status"}
-    ])))
+    print("{:d} status check".format(nginx_collection.count_documents({
+        "method": "GET",
+        "path": "/status"
+    })))
 
 
 if __name__ == "__main__":
