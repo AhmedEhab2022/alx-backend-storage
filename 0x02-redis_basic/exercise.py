@@ -22,7 +22,6 @@ def count_call(method: Callable) -> Callable:
     return wrapper
 
 
-
 class Cache:
     """
     Cache class
