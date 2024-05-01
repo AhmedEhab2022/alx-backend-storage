@@ -3,6 +3,24 @@
 import redis
 from typing import Union, Callable
 import uuid
+from functools import wraps
+
+
+def count_call(method: Callable) -> Callable:
+    """
+    Decorator that takes a method and returns a new method
+    that increments the count for that key every time the
+    method is called.
+    """
+    key = method.__qualname__ + ":count"
+
+    @wraps(method)
+    def wrapper(self, *args, **kwargs):
+        """Wrapper function"""
+        self._redis.incr(key)
+        return method(self, *args, **kwargs)
+    return wrapper
+
 
 
 class Cache:
