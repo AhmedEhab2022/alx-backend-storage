@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """This module contains class Cache"""
 import redis
-from typing import Union
+from typing import Union, Callable
 import uuid
 
 
@@ -17,6 +17,16 @@ class Cache:
                generate a random key (e.g. using uuid),
                store the input data in Redis using the random key
                and return the key.
+
+        get: takes a key string argument and an optional callable argument
+             named fn. This callable will be used to convert the data back
+             to the desired format.
+
+        get_str: will automatically parametrize Cache.get with
+                 the string conversion function.
+
+        get_int: will automatically parametrize Cache.get with
+                 the integer conversion function.
     """
     def __init__(self):
         """Constructor method"""
@@ -33,3 +43,28 @@ class Cache:
         randKey = str(uuid.uuid1())
         self._redis.set(randKey, data)
         return randKey
+
+    def get(self, key: str, fn: Callable = None):
+        """
+        takes a key string argument and an optional callable argument
+        named fn. This callable will be used to convert the data back
+        to the desired format.
+        """
+        data = self._redis.get(key)
+        if fn:
+            return fn(data)
+        return data
+
+    def get_str():
+        """
+        will automatically parametrize Cache.get with
+        the string conversion function.
+        """
+        return self.get(key, str)
+
+    def get_int():
+        """
+        will automatically parametrize Cache.get with
+        the integer conversion function.
+        """
+        return self.get(key, int)
