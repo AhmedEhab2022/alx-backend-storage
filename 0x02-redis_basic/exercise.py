@@ -53,6 +53,7 @@ class Cache:
         self._redis = redis.Redis()
         self._redis.flushdb()
 
+    @count_call
     def store(self, data: Union[str, bytes, int, float]) -> str:
         """
         takes a data argument and returns a string and
